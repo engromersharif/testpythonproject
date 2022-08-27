@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends 'pandasdemo/index.html' %} {% load static %} {% block content %}
+<br />
+<div style="margin-left: 1em">
+  <a href="{% url 'home' %}" button type="button" class="btn btn-outline-danger"
+    >Go Back</a
+  >
+
+  <h1 class="mt-4">Ethanol Data Menu</h1>
+
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Select Year Below To See Data</li>
+  </ol>
+
+  
+  <ol>
+    {% for item in list_items %}
+     <li><a href="{% url 'ethanolList_yearwise' item.Year %}" button type="button" class="btn btn-light">{{item.Year}}</a></li>
+     <br>
+     {% endfor %}
+  </ol>
+  
+
+{% endblock %}

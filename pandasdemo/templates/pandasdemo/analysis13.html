@@ -1,0 +1,17 @@
+
+{% extends 'pandasdemo/index.html' %}
+{% load static %}
+
+  {% block content %}
+            <div style="margin-left: 1.0em">
+            <br>
+            <a href="{% url 'ethanolmenu' %}" button type="button" class="btn btn-outline-danger">Go Back</a>
+            <h1 class="mt-4">Ethanol Detailed Report</h1>
+
+            <ol class="breadcrumb mb-4">
+              <li class="breadcrumb-item active">Business Analytics</li>
+            </ol>
+
+              {{ df | safe}}
+            </div>
+{% endblock %}

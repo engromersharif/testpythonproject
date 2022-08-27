@@ -1,0 +1,45 @@
+{% extends 'pandasdemo/index.html' %} {% load static %} {% block content %}
+<br />
+<div style="margin-left: 1em">
+  <a
+    href="{% url 'ethanolmenu' %}"
+    button
+    type="button"
+    class="btn btn-outline-danger"
+    >Go Back</a
+  >
+  <h1 class="mt-4">Ethanol Month Wise Report</h1>
+
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Business Analytics</li>
+  </ol>
+
+  <h5>Select Year and Submit</h5>
+  <form action="" method="post">
+    {% csrf_token %}
+    <select
+      style="width: 250px"
+      class="form-select"
+      name="yearofthedragon"
+      aria-label="yearofthedragon"
+    >
+      {% for a in year_dropdown %}
+
+      <option value="{{  a }}">{{ a }}</option>
+
+      {% endfor %}
+    </select>
+
+    <input type="submit" value="Submit" />
+  </form>
+
+  <br />
+  <div class="alert alert-danger" role="alert">
+    <h6>
+      SELECTED YEAR: <span class="badge bg-secondary">{{selected_year}}</span>
+    </h6>
+  </div>
+
+  {{df_y_m | safe}}
+</div>
+{% endblock %}

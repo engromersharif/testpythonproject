@@ -1,0 +1,81 @@
+{% extends 'pandasdemo/index.html' %} 
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+<center>
+{% if searched %}
+<h2> You searched for <em><h1>{{searched}}</h1><em> </h2>
+
+  <p> Use the search bar below to further narrow down results </p>
+<h3>Ethanol Market Database</h3>
+     <div class="card-body">
+      
+        <table id="datatablesSimple">
+          <thead>
+            <tr>
+              <th>IdNo</th>
+              <th>Year</th>
+              <th>Date</th>
+              <th>Product</th>
+              <th>Region</th>
+              <th>Country</th>
+              <th>Exporter</th>
+              <th>Importer</th>
+              <th>StorageType</th>
+              <th>MTon Price</th>
+              <th>QTY MT</th>
+              <th>Value USD</th>
+            </tr>
+          </thead>
+
+          <tfoot>
+            <tr>
+              <th>IdNo</th>
+              <th>Year</th>
+              <th>Date</th>
+              <th>Product</th>
+              <th>Region</th>
+              <th>Country</th>
+              <th>Exporter</th>
+              <th>Importer</th>
+              <th>StorageType</th>
+              <th>MTon Price</th>
+              <th>QTY MT</th>
+              <th>Value USD</th>
+            </tr>
+          </tfoot>
+
+          <tbody>
+            Select {% for i in filtered_Ethanol_model %}
+            <tr>
+              <td>{{ i.IdNo }}</td>
+              <td>{{ i.Year }}</td>
+              <td>{{ i.Date | date:"Y-M-d" }}</td>
+              <td>{{ i.Product }}</td>
+              <td>{{ i.REGION }}</td>
+              <td>{{ i.COUNTRY }}</td>
+              <td>{{ i.EXPORTER }}</td>
+              <td>{{ i.IMPORTER }}</td>
+              <td>{{ i.StorageType }}</td>
+              <td>{{ i.MTonPrice | floatformat:2 |intcomma}}</td>
+              <td>{{ i.QTYMT | floatformat:2 |intcomma}}</td>
+              <td>{{ i.VALUEUSD | floatformat:2 |intcomma}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        
+      </div>
+    </div>
+  </div>
+ 
+
+{% else %}
+<h1> Hey! You forgot to Search. </h1>
+{% endif %}
+
+</center>
+
+{% endblock %}

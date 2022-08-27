@@ -1,0 +1,71 @@
+{% extends 'pandasdemo/index.html' %} 
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<nav class="navbar bg-light">
+  <form class="container-fluid justify-content-start">
+     <a href="{% url 'ethanollist' %}" button type="button" class="btn btn-outline-danger">Go Back</a>
+  </form>
+</nav>
+
+
+
+
+<div class="card mb-4">
+    <div class="card-header">
+      <i class="fas fa-table me-1"></i>
+      {% for item in unique_year %}
+      Market Ethanol Data-Year {{item.Year}}
+      {% endfor %}
+    </div>
+    <div class="card-body">
+      <table id="datatablesSimple">
+        <thead>
+          <tr>
+            <th>IdNo</th>
+            <th>Year</th>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Exporter</th>
+            <th>Price</th>
+            <th>QTY MT</th>
+            <th>Value USD</th>
+          </tr>
+        </thead>
+
+        <tfoot>
+          <tr>
+            <th>IdNo</th>
+            <th>Year</th>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Exporter</th>
+            <th>Price</th>
+            <th>QTY MT</th>
+            <th>Value USD</th>
+          </tr>
+        </tfoot>
+
+        <tbody>
+          Select {% for i in list_items %}
+          <tr>
+           <td> <a href="{% url 'update_ethanol' i.IdNo %}">{{ i.IdNo }}</a></td> 
+            <td>{{ i.Year }}</td>
+            <td>{{ i.Date | date:"Y-M-d" }}</td>
+            <td>{{ i.Product }}</td>
+            <td>{{ i.EXPORTER }}</td>
+            <td>{{ i.MTonPrice }}</td>
+            <td>{{ i.QTYMT | floatformat:2 |intcomma  }}</td>
+            <td>{{ i.VALUEUSD | floatformat:2|intcomma }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

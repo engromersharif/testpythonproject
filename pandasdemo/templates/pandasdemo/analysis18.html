@@ -1,0 +1,60 @@
+{% extends 'pandasdemo/index.html' %} {% load static %} {% block content %}
+
+<div style="margin-left: 1em">
+  <br />
+  <a
+    href="{% url 'ethanolmenu' %}"
+    button
+    type="button"
+    class="btn btn-outline-danger"
+    >Go Back</a
+  >
+  <h1 class="mt-4">Ethanol Exporter & Importer Wise Report</h1>
+
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Business Analytics</li>
+  </ol>
+
+  <h5>Select a Year and Exporter</h5>
+  <form action="" method="post">
+    {% csrf_token %}
+    <select
+      style="width: 500px"
+      class="form-select"
+      name="analysis18y"
+      aria-label="analysis18y"
+    >
+      {% for a in year_dropdown %}
+
+      <option value="{{  a }}">{{ a }}</option>
+
+      {% endfor %}
+    </select>
+    <br />
+    <select
+      style="width: 500px"
+      class="form-select"
+      name="analysis18e"
+      aria-label="analysis18e"
+    >
+      {% for value in exporter_dropdown %}
+      <option value="{{value}}">{{ value }}</option>
+      {% endfor %}
+    </select>
+    <br />
+    <input type="submit" value="Submit" />
+  </form>
+
+  <br />
+  <div class="alert alert-danger" role="alert">
+    <h6>
+      SELECTED YEAR:
+      <span class="badge bg-secondary"
+        >{{selected_year}} {{display_exporter}}</span
+      >
+    </h6>
+  </div>
+
+  {{ df_exporter_importer |safe}}
+</div>
+{% endblock %}
